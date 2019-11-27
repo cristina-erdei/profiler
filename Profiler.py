@@ -52,14 +52,14 @@ class Profiler:
         with PdfPages(self.name + '.pdf') as pdf:
 
             for key, value in self.operations.items():
-                figure = plt.figure(value[0].name)
+                figure = plt.figure(key)
 
-                plt.plot(range(len(value)), [k.operation_count for k in value])
+                plt.plot([k.max_number for k in value], [k.operation_count for k in value])
 
                 plt.title(key)
 
                 plt.ylabel('Operation count')
-                plt.xlabel('Iteration')
+                plt.xlabel('Size')
 
                 plt.show()
 
@@ -73,10 +73,10 @@ class Profiler:
                 plt.title(key)
 
                 for operation in value:
-                    plt.plot(range(len(operation)), [k.operation_count for k in operation])
+                    plt.plot([k.max_number for k in operation], [k.operation_count for k in operation])
 
                     plt.ylabel('Operation count')
-                    plt.xlabel('Iteration')
+                    plt.xlabel('Size')
 
                 plt.legend([x[0].name for x in value])
                 plt.show()
